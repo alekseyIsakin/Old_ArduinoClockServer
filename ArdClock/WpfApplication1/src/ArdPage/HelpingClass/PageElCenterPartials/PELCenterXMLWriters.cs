@@ -160,6 +160,7 @@ namespace ArdClock.src.ArdPage.HelpingClass
 
             ndDt.Attributes.Append(attrSec);
 
+
             //
             ndPageEl.AppendChild(ndPos);
             ndPageEl.AppendChild(ndClr);

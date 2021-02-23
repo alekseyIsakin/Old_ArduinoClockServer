@@ -12,6 +12,9 @@ namespace ArdClock.src.ArdPage.PageElements
         public override byte GetTypeEl()
         { return 0; }
 
+        public override void SetID(int id)
+        { ID = id; }
+
         public byte X { get; private set; }
         public byte Y { get; private set; }
 

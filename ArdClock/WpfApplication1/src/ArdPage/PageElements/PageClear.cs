@@ -9,6 +9,8 @@ namespace ArdClock.src.ArdPage.PageElements
 {
     class PageClear : AbstrPageEl
     {
+        public override void SetID(int id) { ID = id; }
+
         public override byte GetTypeEl()
         { return 127; }
 

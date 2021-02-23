@@ -39,7 +39,6 @@ namespace ArdClock.src.XMLLoader
                         XmlNode ndID = nd_page.Attributes.GetNamedItem(XMLDefines.XMLPageAttr.ID);
 
                         List<AbstrPageEl> page_elements = new List<AbstrPageEl>();
-
                         foreach (XmlNode nd_el in nd_page)
                         {
                             if (nd_el.Name == XMLDefines.XMLTag.PageEl)
@@ -55,7 +54,7 @@ namespace ArdClock.src.XMLLoader
                                 PageEl pl = (PageEl)PageElCenter.TryLoadFromXml(type_ep, nd_el);
 
                                 if (pl != null)
-                                    page_elements.Add(pl);
+                                { page_elements.Add(pl); }
                             }
                         }
 

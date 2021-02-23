@@ -20,7 +20,8 @@ namespace ArdClock.src.UIGenerate
         public UIPageString(AbstrPageEl pEl)
             : base(60)
         {
-            PageString ps = (PageString)pEl; 
+            PageString ps = (PageString)pEl;
+            SetID (ps.ID);
 
             // Интерфейс для настройки позиции
             Label lbl_pos = new Label();
@@ -69,6 +70,10 @@ namespace ArdClock.src.UIGenerate
             DockPanel.SetDock(tbT, Dock.Bottom);
             //
 
+            //
+            labl_ID.Content = ID.ToString();
+            //
+
             Container.Children.Add(tbT);
 
             Container.Children.Add(lbl_pos);
@@ -88,7 +93,6 @@ namespace ArdClock.src.UIGenerate
             Container.Children.Add(lbl_size);
             Container.Children.Add(tbS);
 
-
             clrBox.Uid = "clrBox";
             tbX.Uid = "tbX";
             tbY.Uid = "tbY";
@@ -98,6 +102,7 @@ namespace ArdClock.src.UIGenerate
 
         public override AbstrPageEl CompileElement()
         {
+            int id = 0;
             string dt = "";
             AColor clr = AColors.WHITE;
             int px = 0;
@@ -139,6 +144,11 @@ namespace ArdClock.src.UIGenerate
                         catch 
                         { }
                         break;
+                    case "lblID":
+                        if (!int.TryParse(
+                            ((ch as Label).Content as string), out id))
+                        { id = 0; }
+                        break;
                 }
             }
             AbstrPageEl p_out;
@@ -148,7 +158,8 @@ namespace ArdClock.src.UIGenerate
                 clr, 
                 (byte)sz,
                 dt);
-
+            p_out.SetID(id);
+            
             return p_out;
         }
     }

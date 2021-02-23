@@ -21,6 +21,7 @@ namespace ArdClock.src.UIGenerate
             : base(47)
         {
             PageTime pt = (PageTime)pEl;
+            SetID(pt.ID);
 
             // Интерфейс для настройки позиции
             Label lbl_pos = new Label();
@@ -86,6 +87,11 @@ namespace ArdClock.src.UIGenerate
             spFlasgs.Children.Add(cbHour);
             //
 
+            //
+
+            labl_ID.Content = ID.ToString();
+            //
+            
             Container.Children.Add(lbl_pos);
             Container.Children.Add(tbX);
             Container.Children.Add(
@@ -119,6 +125,7 @@ namespace ArdClock.src.UIGenerate
         }
         public override AbstrPageEl CompileElement() 
         {
+            int id = 0;
             bool sec = false;
             bool min = false;
             bool hour = false;
@@ -161,9 +168,14 @@ namespace ArdClock.src.UIGenerate
                         break;
                     case "clrBox":
                         try
-                        { clr = new AColor(((UIAcolorBox)ch).GeBoxColor()); }
+                        { clr = new AColor((ch as UIAcolorBox).GeBoxColor()); }
                         catch
                         { }
+                        break;
+                    case "lblID":
+                        if (!int.TryParse(
+                            ((ch as Label).Content as string), out id))
+                        { id = 0; }
                         break;
                 }
             }
@@ -176,7 +188,8 @@ namespace ArdClock.src.UIGenerate
             ((PageTime)p_out).Second = sec;
             ((PageTime)p_out).Minut = min;
             ((PageTime)p_out).Hour = hour;
-            
+            p_out.SetID(id);
+
             return p_out;
         }
     }
