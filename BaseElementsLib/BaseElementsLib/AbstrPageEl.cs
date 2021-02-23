@@ -7,8 +7,11 @@ namespace BaseLib
 {
     public abstract class AbstrPageEl
     {
-        public abstract List<byte> GenSendData();
+        public int ID { get; protected set; }
 
+        public abstract void SetID(int id);
+
+        public abstract List<byte> GenSendData();
         public abstract byte GetTypeEl();
     }
 }

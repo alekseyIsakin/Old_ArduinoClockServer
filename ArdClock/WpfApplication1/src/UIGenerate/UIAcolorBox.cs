@@ -33,12 +33,14 @@ namespace ArdClock.src.ArdPage
             dp = new DockPanel();
             tbC = new TextBox();
             rectC = new Rectangle();
+
             Label lbl_clr = new Label();
 
             clr = new AColor();
             clr.SetFromColor(clr_in);
 
             lbl_clr.Content = "Цвет";
+            lbl_clr.VerticalAlignment = System.Windows.VerticalAlignment.Center;
             tbC.Text = clr.ToHex();
 
             tbC.Width = 65;

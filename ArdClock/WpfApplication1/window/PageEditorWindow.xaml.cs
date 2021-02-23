@@ -80,7 +80,7 @@ namespace ArdClock.window
                 for (int i = 0; i < UIControlList.Count; i++)
                 {
                     AbstrUIBase el = UIControlList[i];
-
+                    el.SetID(i);
                     el.Container.Background =
                         (i % 2 == 0) ? Brushes.WhiteSmoke : Brushes.LightGray;
 
@@ -107,15 +107,12 @@ namespace ArdClock.window
                 editPage.Elements.Add(new_el.CompileElement());
 
             UIControlList.Clear();
-
-            foreach (var el in editPage.Elements)
+            //var el in editPage.Elements
+            for (int i = 0; i < editPage.Elements.Count; i++ )
             {
-                AbstrUIBase UIel = PageElCenter.TryGenUiControl(el);
-
-                if (UIel != null)
-                {
-                    AppendNewUIel(UIel);
-                }
+                var el = editPage.Elements[i];
+                el.SetID(i);
+                CreateNewUIel(el);
             }
 
             curPage = editPage;
@@ -123,13 +120,36 @@ namespace ArdClock.window
             SoftUpdate();
         }
 
-        private void AppendNewUIel(AbstrUIBase UIel) 
+        private void CreateNewUIel(AbstrPageEl el) 
         {
-
-            UIel.DelClick += UIPageEl_DelClick;
-            UIControlList.Add(UIel);
+            AbstrUIBase UIel = PageElCenter.TryGenUiControl(el);
+            AddUItoList(UIel);
+        }
+        
+        private void CreateNewUIel(int ind) 
+        {
+            AbstrUIBase UIel = PageElCenter.TryGenUiControl(ind);
+            AddUItoList(UIel);
         }
 
+        private void AddUItoList(AbstrUIBase UIel)
+        {
+            if (UIel != null)
+            {
+                UIel.DelClick += UIPageEl_DelClick;
+                UIel.SetID(UIControlList.Count + 1);
+                UIel.Drop += UIElementDropEvent;
+                UIControlList.Add(UIel);
+            }
+        }
+
+        private void Swap(int u1, int u2) 
+        {
+            AbstrUIBase u_tmp = UIControlList[u1];
+            UIControlList[u1] = UIControlList[u2];
+            UIControlList[u2] = u_tmp;
+            SoftUpdate();
+        }
         //
         // Events
         //
@@ -159,12 +179,20 @@ namespace ArdClock.window
             else { ShowPopup("Ничего не сохранено :("); }
         }
 
-
-
         private void UIPageEl_DelClick(object sender, EventArgs e)
         {
             UIControlList.Remove((AbstrUIBase)sender);
             SoftUpdate();
+        }
+
+        private void UIElementDropEvent(object sender, EventArgs e) 
+        {
+            if (sender is AbstrUIBase) 
+            {
+                Swap((sender as AbstrUIBase).ID, ((e as DragDropArgs).drop as AbstrUIBase).ID);
+                //MessageBox.Show((sender as AbstrUIBase).ID.ToString() + "\n" +
+                //                ((e as DragDropArgs).drop as AbstrUIBase).ID.ToString());
+            }
         }
         //
         // Popup logic
@@ -236,24 +264,20 @@ namespace ArdClock.window
             {
                 if (nm == kv.Value)
                 {
-                    AbstrUIBase UIel = PageElCenter.TryGenUiControl(kv.Key);
-                    if (UIel != null)
-                    {
-                        AppendNewUIel(UIel);
-                        SoftUpdate();
-                        break;
-                    }
+                    CreateNewUIel(kv.Key);
+                    SoftUpdate();
+                    break;
                 }
             }
         }
-        //
-        //
-        //
-
-        public void SortListPageEl() 
+        // Context Menu: Update
+        public void MenuUpdate(object sender, RoutedEventArgs e)
         {
-            UIControlList.Sort();
-
+            button_Save_Click(this, null);
         }
+
+        //
+        //
+        //
     }
 }

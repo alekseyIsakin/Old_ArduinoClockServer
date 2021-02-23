@@ -13,41 +13,56 @@ namespace ArdClock.src.UIGenerate
 {
     public class UIBaseEl : AbstrUIBase
     {
-        private ContextMenu DPContextMenu;
+        protected ContextMenu DPContextMenu;
+        protected Label labl_ID;
 
         public UIBaseEl(int Height)
         {
+            labl_ID = new Label();
+            labl_ID.VerticalAlignment = VerticalAlignment.Center;
+            labl_ID.Uid = "lblID";
+
             DPContextMenu = new ContextMenu();
             MenuItem mi = new MenuItem();
 
+            mi.Header = "Удалить";
+            mi.Click += RaiseDelClick;
+
+            DPContextMenu.Items.Add(mi);
+
             Container = new DockPanel();
             ((DockPanel)Container).LastChildFill = false;
-
             Container.Height = Height;
-            
-            mi.Header = "Del";
-            mi.Click += delClick;
-            
-            DPContextMenu.Items.Add(mi);
 
             Container.ContextMenu = DPContextMenu;
             Container.AllowDrop = true;
+
+            Container.Children.Add(labl_ID);
+
+            Container.Children.Add(
+                UIGenerateHelping.NewGridSplitter(10, Container.Background));
+
+            Container.MouseLeftButtonDown += container_MouseDown;
+            Container.Drop += (s, e) => RaiseDrop(this, e.Data.GetData(typeof(AbstrUIBase)));
         }
 
-        public new void delClick(Object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void container_MouseDown(object sender, EventArgs e)
         {
-            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
-            MessageBox.Show(System.Windows.Input.Mouse.LeftButton.ToString());   
-        }
-
-        private void lbl1_MouseDown(object sender, EventArgs e)
-        {
-            DockPanel lbl = (DockPanel)sender;
-            DragDrop.DoDragDrop(lbl, ID, DragDropEffects.Copy);
+            DataObject data = new DataObject(typeof(AbstrUIBase), this);
+            DragDrop.DoDragDrop(Container, data, DragDropEffects.Move);
         }
 
         public override AbstrPageEl CompileElement() {
             return null; 
+        }
+
+        public override void SetID(int id) 
+        { 
+            if (labl_ID != null)
+            {
+                labl_ID.Content = id.ToString();
+                ID = id;
+            }
         }
     }
 }

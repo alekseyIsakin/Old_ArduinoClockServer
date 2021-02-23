@@ -5,14 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="Window1" Height="300" Width="737" DataContext="{Binding}">
     <Grid>
-        <ListBox HorizontalAlignment="Left" Margin="12,12,0,71" Name="list_page_name" Width="175" SelectionChanged="listBox1_SelectionChanged" />
+        <ListBox HorizontalAlignment="Left" Margin="12,12,0,41" Name="list_page_name" Width="175" SelectionChanged="listBox1_SelectionChanged" />
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="193,0,0,0" BorderBrush="Black" BorderThickness="1">
         <StackPanel Name="elementsPageStackPanel" Orientation="Vertical" Background="#FFF2F2F2">
             <StackPanel.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Добавить" MouseEnter="MenuItemAdd_MouseEnter"/>
-                    <MenuItem Header="Удалить"/>
-                    <MenuItem Header="Обновить"/>
+                        <MenuItem Header="Сохранить" Click="MenuUpdate"/>
                 </ContextMenu>
             </StackPanel.ContextMenu>
             </StackPanel>
@@ -22,7 +21,6 @@
             <TextBlock Name="popupTextBox"  TextWrapping="Wrap" Background="LightPink" Opacity="0.8">
             Сохранено</TextBlock>
         </Popup>
-        <Button Content="Сохранить" Margin="12,0,0,41" Name="button_Save" Click="button_Save_Click" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="175" />
         <Button Content="Активировать" HorizontalAlignment="Left" Margin="12,0,0,12" Name="button_Activate" Width="175" Height="23" VerticalAlignment="Bottom" />
     </Grid>
 </Window>
