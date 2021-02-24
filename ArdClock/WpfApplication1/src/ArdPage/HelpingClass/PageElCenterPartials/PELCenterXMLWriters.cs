@@ -155,7 +155,7 @@ namespace ArdClock.src.ArdPage.HelpingClass
                 XMLDefines.XMLTimeAttr.DataTmFlag.ToString());
 
             attrSec.Value = pt.Second ? "1" : "0";
-            attrSec.Value += pt.Minut ? "1" : "0";
+            attrSec.Value += pt.Minute ? "1" : "0";
             attrSec.Value += pt.Hour ? "1" : "0";
 
             ndDt.Attributes.Append(attrSec);
