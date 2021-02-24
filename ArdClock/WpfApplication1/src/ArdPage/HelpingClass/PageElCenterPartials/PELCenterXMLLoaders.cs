@@ -128,7 +128,7 @@ namespace ArdClock.src.ArdPage.HelpingClass
                 out_pageEl = new PageTime(b_pos_x, b_pos_y, color, b_sz);
 
                 ((PageTime)out_pageEl).Second = (dt_str[0] == '1');
-                ((PageTime)out_pageEl).Minut = (dt_str[1] == '1');
+                ((PageTime)out_pageEl).Minute = (dt_str[1] == '1');
                 ((PageTime)out_pageEl).Hour = (dt_str[2] == '1');
             }
             catch (Exception e)

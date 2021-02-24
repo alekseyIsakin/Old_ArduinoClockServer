@@ -75,7 +75,7 @@ namespace ArdClock.src.UIGenerate
             CheckBox cbHour = new CheckBox();
 
             cbSecond.IsChecked = pt.Second;
-            cbMinut.IsChecked = pt.Minut;
+            cbMinut.IsChecked = pt.Minute;
             cbHour.IsChecked = pt.Hour;
 
             cbSecond.Content = "сек";
@@ -186,7 +186,7 @@ namespace ArdClock.src.UIGenerate
                 (byte)sz);
 
             ((PageTime)p_out).Second = sec;
-            ((PageTime)p_out).Minut = min;
+            ((PageTime)p_out).Minute = min;
             ((PageTime)p_out).Hour = hour;
             p_out.SetID(id);
 
