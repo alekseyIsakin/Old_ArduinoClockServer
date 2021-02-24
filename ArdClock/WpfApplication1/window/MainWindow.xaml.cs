@@ -260,6 +260,12 @@ namespace ArdClock
             PEWindow.ShowDialog();
         }
 
+        private void MenuAboutAppClick(object sender, EventArgs e) 
+        {
+            MessageBox.Show("Версия сборки: " + 
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+        }
+
         private void LockSend(object sender, EventArgs e)
         { Button_singleSend.IsEnabled = false; }
 
