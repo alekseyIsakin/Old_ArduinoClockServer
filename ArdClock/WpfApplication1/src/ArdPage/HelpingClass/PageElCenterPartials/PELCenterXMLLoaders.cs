@@ -4,23 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-using ArdClock.src.ArdPage;
-using ArdClock.src.UIGenerate;
-using ArdClock.src.ArdPage.PageElements;
-using ArdClock.src.XMLLoader;
+using ArdClock.ArdPage;
+using ArdClock.UIGenerate;
+using ArdClock.ArdPage.PageElements;
+using ArdClock.XMLLoader;
 
 using BaseLib;
+using BaseLib.Xml;
+using BaseLib.HelpingClass;
 
-namespace ArdClock.src.ArdPage.HelpingClass
+namespace ArdClock
 {
     public static partial class PageElCenter
     {
-        public static AbstrPageEl TryLoadFromXml(int id, XmlNode nd)
-        {
-            if (HasID(id)) 
-                return _funcsXmlLoaders[id](nd);
-            return null;
-        }
         static private AbstrPageEl ReadLikePageString(XmlNode nd_el)
         {
             PageEl out_pageEl = new PageEl();
@@ -31,27 +27,27 @@ namespace ArdClock.src.ArdPage.HelpingClass
             {
                 switch (nd_string_par.Name)
                 {
-                    case (XMLDefines.XMLStringTag.Position):
+                    case (XMLDefines.XMLBaseElTag.Position):
 
                         pos_x = nd_string_par.Attributes.GetNamedItem(
-                            XMLDefines.XMLStringAttr.PosX).Value;
+                            XMLDefines.XMLBaseElAttr.PosX).Value;
                         pos_y = nd_string_par.Attributes.GetNamedItem(
-                            XMLDefines.XMLStringAttr.PosY).Value;
+                            XMLDefines.XMLBaseElAttr.PosY).Value;
                         break;
 
-                    case (XMLDefines.XMLStringTag.Color):
+                    case (XMLDefines.XMLBaseElTag.Color):
                         clr_hex = nd_string_par.Attributes.GetNamedItem(
-                            XMLDefines.XMLStringAttr.ColorValue).Value;
+                            XMLDefines.XMLBaseElAttr.ColorValue).Value;
                         break;
 
-                    case (XMLDefines.XMLStringTag.Size):
+                    case (XMLDefines.XMLBaseElTag.Size):
                         sz = nd_string_par.Attributes.GetNamedItem(
-                            XMLDefines.XMLStringAttr.SizeValue).Value;
+                            XMLDefines.XMLBaseElAttr.SizeValue).Value;
                         break;
 
-                    case (XMLDefines.XMLStringTag.Data):
+                    case (XMLDefines.XMLBaseElTag.Data):
                         dt_str = nd_string_par.Attributes.GetNamedItem(
-                            XMLDefines.XMLStringAttr.Data).Value;
+                            XMLDefines.XMLBaseElAttr.Data).Value;
                         break;
                 }
             }
@@ -86,27 +82,27 @@ namespace ArdClock.src.ArdPage.HelpingClass
                 {
                     switch (nd_string_par.Name)
                     {
-                        case (XMLDefines.XMLTimeTag.Position):
+                        case (XMLDefines.XMLBaseElTag.Position):
 
                             pos_x = nd_string_par.Attributes.GetNamedItem(
-                                XMLDefines.XMLTimeAttr.PosX).Value;
+                                XMLDefines.XMLBaseElAttr.PosX).Value;
                             pos_y = nd_string_par.Attributes.GetNamedItem(
-                                XMLDefines.XMLTimeAttr.PosY).Value;
+                                XMLDefines.XMLBaseElAttr.PosY).Value;
                             break;
 
-                        case (XMLDefines.XMLTimeTag.Color):
+                        case (XMLDefines.XMLBaseElTag.Color):
                             clr_hex = nd_string_par.Attributes.GetNamedItem(
-                                XMLDefines.XMLTimeAttr.ColorValue).Value;
+                                XMLDefines.XMLBaseElAttr.ColorValue).Value;
                             break;
 
-                        case (XMLDefines.XMLTimeTag.Size):
+                        case (XMLDefines.XMLBaseElTag.Size):
                             sz = nd_string_par.Attributes.GetNamedItem(
-                                XMLDefines.XMLTimeAttr.SizeValue).Value;
+                                XMLDefines.XMLBaseElAttr.SizeValue).Value;
                             break;
 
-                        case (XMLDefines.XMLTimeTag.Data):
+                        case (XMLDefines.XMLBaseElTag.Data):
                             dt_str = nd_string_par.Attributes.GetNamedItem(
-                                XMLDefines.XMLTimeAttr.DataTmFlag).Value;
+                                XMLDefines.XMLBaseElAttr.Data).Value;
                             break;
                     }
                 }

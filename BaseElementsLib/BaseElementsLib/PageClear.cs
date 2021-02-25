@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using BaseLib;
-
-namespace ArdClock.src.ArdPage.PageElements
+namespace BaseLib
 {
-    class PageClear : AbstrPageEl
+    public class PageClear : AbstrPageEl
     {
         public override void SetID(int id) { ID = id; }
 

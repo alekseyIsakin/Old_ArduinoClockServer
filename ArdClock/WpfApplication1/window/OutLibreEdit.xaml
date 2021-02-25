@@ -1,0 +1,13 @@
+﻿<Window x:Class="ArdClock.window.OutLibreEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Сторонние библиотеки" Height="300" Width="300">
+    <StackPanel Name="stackPanel1">
+        <Grid Height="52" Name="grid1">
+            <Label Content="Обнаружено n дополнений" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label1" VerticalAlignment="Top" />
+            <Button Content="Обновить" Height="23" HorizontalAlignment="Left" Margin="174,0,0,0" Name="ButtonUpdate" Click="ButtonUpdate_Click" VerticalAlignment="Top" Width="75" />
+            <Button Content="Добавить" Height="23" HorizontalAlignment="Left" Margin="174,29,0,0" Name="ButtonAddDll" VerticalAlignment="Top" Width="75" />
+        </Grid>
+        <ListBox Name="ListPathToDll" />
+    </StackPanel>
+</Window>

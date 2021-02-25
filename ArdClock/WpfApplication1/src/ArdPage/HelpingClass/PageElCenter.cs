@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using ArdClock.src.ArdPage;
-using ArdClock.src.UIGenerate;
-using ArdClock.src.ArdPage.PageElements;
+using ArdClock.ArdPage;
+using ArdClock.UIGenerate;
+using ArdClock.ArdPage.PageElements;
 
 using BaseLib;
 
-namespace ArdClock.src.ArdPage.HelpingClass
+namespace ArdClock
 {
     public static partial class PageElCenter
     {
@@ -69,6 +69,21 @@ namespace ArdClock.src.ArdPage.HelpingClass
                 return _funcsUIConstruct[id](pEl);
             return null;
         }
+        public static AbstrPageEl TryLoadFromXml(int id, System.Xml.XmlNode nd)
+        {
+            if (HasID(id))
+                return _funcsXmlLoaders[id](nd);
+            return null;
+        }
+
+        public static System.Xml.XmlElement TryWriteToXml(AbstrPageEl pl, System.Xml.XmlDocument xdd)
+        {
+            byte tp = pl.GetTypeEl();
+
+            if (HasID(tp))
+                return _funcsXmlWriters[tp](pl, xdd);
+            return null;
+        }
 
         public static AbstrPageEl getNewPageElFromID(int id)
         {
@@ -88,11 +103,21 @@ namespace ArdClock.src.ArdPage.HelpingClass
         public static Dictionary<int,string> getDict()
         { return _namesPageEl; }
 
-        public static void AddNewElement(int id)
+        public static void AddNewElement(int id, string NameEl,
+            Func<AbstrPageEl> BaseConstruct,
+            Func<AbstrPageEl, AbstrUIBase> BaseUIConstruct,
+            Func<System.Xml.XmlNode, AbstrPageEl> XMLLoader,
+            Func<AbstrPageEl, System.Xml.XmlDocument, System.Xml.XmlElement> XMLWriter)
         {
             if (!HasID(id))
             {
+                _funcsConstruct[id] = BaseConstruct;
+                _funcsUIConstruct[id] = BaseUIConstruct;
+                _funcsXmlLoaders[id] = XMLLoader;
+                _funcsXmlWriters[id] = XMLWriter;
 
+                _index.Add(id);
+                _namesPageEl.Add(id, NameEl);
             }
         }
     }

@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 
-using ArdClock.src;
-
-namespace ArdClock.src.ArdPage.HelpingClass
+namespace BaseLib.HelpingClass
 {
     public class AColor
     {

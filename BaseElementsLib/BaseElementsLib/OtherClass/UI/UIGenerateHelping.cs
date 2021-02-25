@@ -5,9 +5,9 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace ArdClock.src.UIGenerate
+namespace BaseLib.HelpingClass
 {
-    static class UIGenerateHelping
+    static public class UIGenerateHelping
     {
         static public GridSplitter NewGridSplitter(int width, Brush bgColor)
         {

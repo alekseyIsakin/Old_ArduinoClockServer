@@ -7,13 +7,11 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
+using BaseLib;
 
-using ArdClock.src.ArdPage.PageElements;
-using ArdClock.src.ArdPage.HelpingClass;
-
-namespace ArdClock.src.ArdPage
+namespace BaseLib.HelpingClass
 {
-    class UIAcolorBox : UserControl
+    public class UIAcolorBox : UserControl
     {
         private DockPanel dp;
         private AColor clr;

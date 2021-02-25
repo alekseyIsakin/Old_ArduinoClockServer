@@ -7,15 +7,14 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-using ArdClock.src.ArdPage;
-using ArdClock.src.ArdPage.HelpingClass;
-using ArdClock.src.ArdPage.PageElements;
+using ArdClock.ArdPage.PageElements;
 
 using BaseLib;
+using BaseLib.HelpingClass;
 
-namespace ArdClock.src.UIGenerate
+namespace ArdClock.UIGenerate
 {
-    class UIPageString : UIBaseEl
+    public class UIPageString : UIBaseEl
     {
         public UIPageString(AbstrPageEl pEl)
             : base(60)

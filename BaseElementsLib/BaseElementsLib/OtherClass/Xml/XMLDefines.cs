@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ArdClock.src.XMLLoader
+namespace BaseLib.Xml
 {
-    class XMLDefines
+    public class XMLDefines
     {
         public class XMLTag
         {
@@ -23,6 +23,9 @@ namespace ArdClock.src.XMLLoader
         public class XMLBaseElTag 
         {
             public const string Position = "Position";
+            public const string Color = "Color";
+            public const string Size = "Size";
+            public const string Data = "Data";
         }
 
         public class XMLBaseElAttr
@@ -30,27 +33,9 @@ namespace ArdClock.src.XMLLoader
             public const string TypeEl = "TPageEl";
             public const string PosX = "Pos_x";
             public const string PosY = "Pos_y";
-        }
-
-        public class XMLStringTag : XMLBaseElTag
-        {
-            public const string Color = "Color";
-            public const string Size = "Size";
-            public const string Data = "Data";
-        }
-        public class XMLStringAttr : XMLBaseElAttr
-        {
             public const string ColorValue = "Value";
             public const string SizeValue = "Value";
             public const string Data = "Value";
-        }
-
-        public class XMLTimeTag : XMLStringTag
-        { }
-
-        public class XMLTimeAttr : XMLStringAttr
-        {
-            public const string DataTmFlag = "Flags";
         }
     }
 }

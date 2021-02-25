@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using BaseLib;
-
-namespace ArdClock.src.ArdPage.PageElements
+namespace BaseLib
 {
     public class PageEl : AbstrPageEl
     {

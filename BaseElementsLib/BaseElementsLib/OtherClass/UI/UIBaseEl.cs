@@ -5,11 +5,9 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-using ArdClock.src.ArdPage.PageElements;
-
 using BaseLib;
 
-namespace ArdClock.src.UIGenerate
+namespace BaseLib.HelpingClass
 {
     public class UIBaseEl : AbstrUIBase
     {

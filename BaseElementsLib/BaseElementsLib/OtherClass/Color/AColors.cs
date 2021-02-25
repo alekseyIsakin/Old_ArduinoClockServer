@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ArdClock.src.ArdPage.HelpingClass
+namespace BaseLib.HelpingClass
 {
     public sealed class AColors 
     {
